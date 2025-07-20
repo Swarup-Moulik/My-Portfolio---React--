@@ -1,5 +1,4 @@
 import express from "express";
-import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -22,7 +21,10 @@ connectDB();
 connectCloudinary();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://my-portfolio-react-liart.vercel.app', // Replace with your actual frontend
+  credentials: true
+}));
 app.use(express.json());
 
 // API Endpoints
