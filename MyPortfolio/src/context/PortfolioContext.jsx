@@ -22,11 +22,17 @@ const PortfolioContextProvider = (props) => {
             if (response.data.success) {
                 setPortfolio(response.data.portfolios?.user || response.data.portfolios); // handle both structures
             } else {
-                toast.error(response.data.message);
+                setPortfolio(null);
+                toast.error(response.data.message || "Portfolio not found");
             }
         } catch (error) {
-            console.log(error);
-            toast.error(error.message);
+            if (error.response?.status === 404) {
+                toast.error("Portfolio not found");
+                setPortfolio(null);
+            } else {
+                toast.error("Something went wrong");
+            }
+            console.error("getPortfolio error:", error);
         } finally {
             setLoading(false); // ✅ end loading
         }

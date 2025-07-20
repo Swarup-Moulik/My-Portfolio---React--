@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const categories = ['All', 'Frontend', 'Backend', 'Tools', 'AIML & Data Science', 'Others'];
 const SkillsEdit = () => {
-  const { port, handleUpdate, handleRemoveItem, handleRemoveSkill } = useContext(PortfolioContext);
+  const { port, handleUpdate, handleRemoveItem } = useContext(PortfolioContext);
   const [activeCat, setActiveCat] = useState("All");
   const [newSkill, setNewSkill] = useState({
     name: '',
@@ -55,31 +55,40 @@ const SkillsEdit = () => {
         ))
         }
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-        {filteredSkills.map((skill, key) => (
-          <div key={key} className='bg-card p-6 rounded-lg shadow-xs card-hover'>
-            <div className='text-left mb-4 '>
-              <h3 className='text-lg font-semibold'>{skill.name}</h3>
-            </div>
-            <div className='w-full bg-secondary/50 rounded-full h-2 overflow-hidden'>
-              <div
-                className='bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out_0.2s_forwards]'
-                style={{ '--tw-grow-width': `${skill.level}%`, width: "0%" }}
-              />
-            </div>
-            <div className='text-right mt-1'>
-              <span className='text-sm text-muted-foreground'>{skill.level}%</span>
-            </div>
-            <div className='flex gap-3 mt-3 justify-around'>
-              <p className='text-md text-gray-200'>{skill.category}</p>
-              <button className='transition-colors duration-300 hover:text-primary cursor-pointer'
-                onClick={() => handleRemoveItem('skills', skill.name)}
-              >
-                <X />
-              </button>
-            </div>
+      <div>
+        {(!port.skills || port.skills.length === 0) ?
+          <div className="text-center text-glow font-bold m-10 text-xl text-primary-foreground">
+            No skills in here. Train Yourself!
           </div>
-        ))}
+          :
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {(filteredSkills ?? []).map((skill, key) => (
+              <div key={key} className='bg-card p-6 rounded-lg shadow-xs card-hover'>
+                <div className='text-left mb-4 '>
+                  <h3 className='text-lg font-semibold'>{skill.name}</h3>
+                </div>
+                <div className='w-full bg-secondary/50 rounded-full h-2 overflow-hidden'>
+                  <div
+                    className='bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out_0.2s_forwards]'
+                    style={{ '--tw-grow-width': `${skill.level}%`, width: "0%" }}
+                  />
+                </div>
+                <div className='text-right mt-1'>
+                  <span className='text-sm text-muted-foreground'>{skill.level}%</span>
+                </div>
+                <div className='flex gap-3 mt-3 justify-around'>
+                  <p className='text-md text-gray-200'>{skill.category}</p>
+                  <button className='transition-colors duration-300 hover:text-primary cursor-pointer'
+                    onClick={() => handleRemoveItem('skills', skill.name)}
+                  >
+                    <X />
+                  </button>
+                </div>
+              </div>
+            ))
+            }
+          </div>
+        }
       </div>
       <div className='flex justify-center'>
         <hr className='bg-primary w-[75%] mx-3 my-7 justify-center h-[3px]' />

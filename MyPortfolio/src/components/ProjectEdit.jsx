@@ -75,47 +75,53 @@ const ProjectEdit = () => {
       <h2 className='text-3xl font-bold text-center mb-3 mt-2'>
         My  <span className='text-glow'> Featured </span> <span className='text-primary'> Projects </span>
       </h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-        {(port.projects ?? []).map((project, key) => (
-          <div key={key} className='group bg-card rounded-lg shadow-xs overflow-hidden card-hover'>
-            <div className='h-48 overflow-hidden'>
-              <img src={project.image} alt={project.title} className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110' />
-            </div>
-            <div className='p-6'>
-              <div className='flex flex-wrap gap-2 mb-4'>
-                {project.stack.map((tag, key) => (
-                  <span key={key} className='px-2 py-1 text-xs border font-medium rounded-full background-secondary text-secondary-foreground'> {tag} </span>
-                ))}
+      {(!port.projects || port.projects.length === 0) ?
+        <div className="text-center text-glow font-bold m-10 text-xl text-primary-foreground">
+          No Projects in here. Flex your skills!
+        </div>
+        :
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {(port.projects ?? []).map((project, key) => (
+            <div key={key} className='group bg-card rounded-lg shadow-xs overflow-hidden card-hover'>
+              <div className='h-48 overflow-hidden'>
+                <img src={project.image} alt={project.title} className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110' />
               </div>
-              <h3 className='text-xl font-semibold mb-1'>{project.title}</h3>
-              <p className='text-muted-foreground text-sm mb-4'>{project.about}</p>
-              <div className='flex justify-between items-center mt-2'>
-                {/* Left-side icon group */}
-                <div className='flex space-x-3'>
-                  <a
-                    href={project.live}
-                    target='_blank'
-                    className='text-foreground/80 hover:text-primary transition-colors duration-300'
-                  >
-                    <ExternalLink size={20} />
-                  </a>
-                  <a
-                    href={project.github}
-                    target='_blank'
-                    className='text-foreground/80 hover:text-primary transition-colors duration-300'
-                  >
-                    <Github size={20} />
-                  </a>
+              <div className='p-6'>
+                <div className='flex flex-wrap gap-2 mb-4'>
+                  {project.stack.map((tag, key) => (
+                    <span key={key} className='px-2 py-1 text-xs border font-medium rounded-full background-secondary text-secondary-foreground'> {tag} </span>
+                  ))}
                 </div>
-                {/* Right-aligned X button */}
-                <button className='transition-colors duration-300 hover:text-primary cursor-pointer' onClick={() => handleRemoveItem('projects', project.title)}>
-                  <X size={20} />
-                </button>
+                <h3 className='text-xl font-semibold mb-1'>{project.title}</h3>
+                <p className='text-muted-foreground text-sm mb-4'>{project.about}</p>
+                <div className='flex justify-between items-center mt-2'>
+                  {/* Left-side icon group */}
+                  <div className='flex space-x-3'>
+                    <a
+                      href={project.live}
+                      target='_blank'
+                      className='text-foreground/80 hover:text-primary transition-colors duration-300'
+                    >
+                      <ExternalLink size={20} />
+                    </a>
+                    <a
+                      href={project.github}
+                      target='_blank'
+                      className='text-foreground/80 hover:text-primary transition-colors duration-300'
+                    >
+                      <Github size={20} />
+                    </a>
+                  </div>
+                  {/* Right-aligned X button */}
+                  <button className='transition-colors duration-300 hover:text-primary cursor-pointer' onClick={() => handleRemoveItem('projects', project.title)}>
+                    <X size={20} />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      }
       <div className='flex justify-center'>
         <hr className='bg-primary w-[75%] mx-3 my-7 justify-center h-[3px]' />
       </div>
