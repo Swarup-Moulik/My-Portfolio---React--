@@ -30,7 +30,7 @@ const Project = () => {
                                 <div className='flex justify-between items-center mt-2'>
                                     <div className='flex space-x-3'>
                                         <a
-                                            href={project.demoUrl}
+                                            href={project.live}
                                             target='_blank'
                                             className='text-foreground/80  hover:text-primary transition-colors duration-300'
                                         >

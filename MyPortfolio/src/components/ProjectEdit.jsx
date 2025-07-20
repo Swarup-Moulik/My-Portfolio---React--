@@ -93,7 +93,7 @@ const ProjectEdit = () => {
                 {/* Left-side icon group */}
                 <div className='flex space-x-3'>
                   <a
-                    href={project.demoUrl}
+                    href={project.live}
                     target='_blank'
                     className='text-foreground/80 hover:text-primary transition-colors duration-300'
                   >
@@ -135,11 +135,11 @@ const ProjectEdit = () => {
             className="bg-background rounded-md px-2 py-2 w-full"
             required
           />
-          <label htmlFor={`about `} className='text-lg font-semibold'>About Project :-</label>
+          <label htmlFor={`about`} className='text-lg font-semibold'>About Project :-</label>
           <input
             type="text"
-            name={`about `}
-            id={`about `}
+            name={`about`}
+            id={`about`}
             value={newProject.about}
             onChange={(e) => handleInputChange('about', e.target.value)}
             placeholder="Such an AI powered..."
@@ -164,7 +164,7 @@ const ProjectEdit = () => {
           </label>
         </div>
         <div className="flex flex-col gap-3 items-start px-3 py-3 bg-primary/30 rounded-lg card-hover">
-          <label htmlFor={`stack `} className='text-lg font-semibold'>Technical Stack :-</label>
+          <label htmlFor={`stack`} className='text-lg font-semibold'>Technical Stack :-</label>
           <textarea
             type="text"
             value={newProject.tempStack}
@@ -184,22 +184,22 @@ const ProjectEdit = () => {
           )}
         </div>
         <div className="flex flex-col gap-3 items-start px-3 py-3 bg-primary/30 rounded-lg card-hover">
-          <label htmlFor={`live `} className='text-lg font-semibold'>Live URL :-</label>
+          <label htmlFor={`live`} className='text-lg font-semibold'>Live URL :-</label>
           <input
             type="text"
-            name={`live `}
-            id={`live `}
+            name={`live`}
+            id={`live`}
             value={newProject.live}
             onChange={(e) => handleInputChange('live', e.target.value)}
             placeholder="www.shadi.com"
             className="bg-background rounded-md px-2 py-2 w-full"
             required
           />
-          <label htmlFor={`about `} className='text-lg font-semibold'>Git-Hub Repo :-</label>
+          <label htmlFor={`github`} className='text-lg font-semibold'>Git-Hub Repo :-</label>
           <input
             type="text"
-            name={`github `}
-            id={`github `}
+            name={`github`}
+            id={`github`}
             value={newProject.github}
             onChange={(e) => handleInputChange('github', e.target.value)}
             placeholder="www.github/shadi.com"
