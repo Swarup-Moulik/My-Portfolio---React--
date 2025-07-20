@@ -17,10 +17,7 @@ connectDB();
 connectCloudinary();
 
 // Middleware
-app.use(cors({
-  origin: 'https://my-portfolio-react-liart.vercel.app', // Replace with your actual frontend
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
 // API Endpoints
