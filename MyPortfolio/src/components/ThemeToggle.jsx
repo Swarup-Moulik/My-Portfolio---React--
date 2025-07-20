@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils'; // Assuming you have a utility function for class names
 
 const ThemeToggle = () => {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(true);
     const toggleTheme = () => {
         if (isDark) {
             document.documentElement.classList.remove('dark');
