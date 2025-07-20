@@ -49,7 +49,7 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className='font-medium'> Phone </h4>
-                                    <a href={`tel:${port.phoneNumber}`} className='text-muted-foreground hover:text-primary transition-colors'>{port?.phoneNumber || 'Number'}</a>
+                                    <a href={`tel:${port.phoneNumber}`} className='text-muted-foreground hover:text-primary transition-colors'>Contact Me ❤️</a>
                                 </div>
                             </div>
                             <div className='flex items-start space-x-4'>
