@@ -118,7 +118,7 @@ const ContactEdit = () => {
       <div className='flex flex-col gap-4 mx-2 '>
         <div className='mx-2 flex flex-col md:grid grid-cols-[1fr_4fr] gap-3 justify-center items-center'>
           <h3 className='text-glow text-2xl px-2 font-bold'>GitHub Link :-</h3>
-          <div className='text-xl bg-card rounded-md px-2 p-1 font-bold text-primary'>{port.git}</div>
+          <div className='text-xl bg-card rounded-md px-2 p-1 w-fit font-bold text-primary'>{port.git}</div>
         </div>
         <div className='flex justify-center'>
           <input
@@ -138,7 +138,7 @@ const ContactEdit = () => {
       <div className='flex flex-col gap-4 mx-2 '>
         <div className='mx-2 flex flex-col md:grid grid-cols-[1fr_4fr] gap-3 justify-center items-center'>
           <h3 className='text-glow text-2xl px-2 font-bold'>Uploaded CV :-</h3>
-          <div className='text-xl bg-card rounded-md px-2 p-1 font-bold text-primary'>{cvUrl}</div>
+          <div className='text-xl bg-card rounded-md px-2 p-1 w-fit font-bold text-primary'>{cvUrl}</div>
         </div>
         <div className='flex justify-center gap-3 text-lg'>
           {!form.cv ? (
