@@ -56,11 +56,15 @@ const SkillsEdit = () => {
         }
       </div>
       <div>
-        {(!port.skills || port.skills.length === 0) ?
+        {!Array.isArray(port.skills) ? (
+          <div className="text-center text-glow font-bold m-10 text-xl text-primary-foreground">
+            Loading or no portfolio data...
+          </div>
+        ) : port.skills.length === 0 ? (
           <div className="text-center text-glow font-bold m-10 text-xl text-primary-foreground">
             No skills in here. Train Yourself!
           </div>
-          :
+        ) : (
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
             {(filteredSkills ?? []).map((skill, key) => (
               <div key={key} className='bg-card p-6 rounded-lg shadow-xs card-hover'>
@@ -88,6 +92,7 @@ const SkillsEdit = () => {
             ))
             }
           </div>
+        )
         }
       </div>
       <div className='flex justify-center'>
