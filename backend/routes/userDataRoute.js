@@ -12,6 +12,6 @@ userDataRouter.post('/add', userAuth, upload.fields([
 ]), addPortfolio);
 
 // Route for listing all portfolios
-userDataRouter.get('/list/:userId?', listPortfolio);
+userDataRouter.get('/list/:userId', listPortfolio);
 userDataRouter.delete('/delete-account/:userId', userAuth, deleteAccount);
 export default userDataRouter;

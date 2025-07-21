@@ -1,7 +1,5 @@
 import express from "express";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
 import 'dotenv/config';
 
 import connectDB from "./config/mongoDB.js";
@@ -24,10 +22,6 @@ app.use(express.json());
 app.use('/api/user', express.urlencoded({ extended: true }), userRouter);
 app.use('/api/portfolio', userDataRouter);
 app.use('/api/edit', portRouter);
-
-// Serve static files from React dist folder (Vite build output)
-const frontendPath = path.join(__dirname, 'client', 'dist'); // adjust path if different
-app.use(express.static(frontendPath));
 
 //Health check route
 app.get('/', (req, res) => {
