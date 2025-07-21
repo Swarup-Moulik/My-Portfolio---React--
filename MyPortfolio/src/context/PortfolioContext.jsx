@@ -20,7 +20,13 @@ const PortfolioContextProvider = (props) => {
                 : {};
             const response = await axios.get(`${backendURL}/api/portfolio/list/${userIdParam}`, config);
             if (response.data.success) {
-                setPortfolio(response.data.portfolios?.user || response.data.portfolios); // handle both structures
+                const raw = response.data.portfolios?.user || response.data.portfolios;
+                const normalized = {
+                    ...raw,
+                    skills: Array.isArray(raw.skills) ? raw.skills : [],
+                    projects: Array.isArray(raw.projects) ? raw.projects : [],
+                };
+                setPortfolio(normalized);
             } else {
                 setPortfolio(null);
                 toast.error(response.data.message || "Portfolio not found");
