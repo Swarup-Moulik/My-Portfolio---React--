@@ -3,21 +3,47 @@ import React, { useContext, useState } from 'react'
 import { cn } from '../lib/utils'
 import { useToast } from '@/hooks/use-toast.js';
 import { PortfolioContext } from '../context/PortfolioContext';
+import axios from 'axios';
 
 const Contact = () => {
     const { toast } = useToast();
-    const { port } = useContext(PortfolioContext);
+    const { port, backendURL } = useContext(PortfolioContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setTimeout(() => {
+        const form = e.target;
+        const formData = {
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value,
+            receiver: port?.email, // destination email fetched from MongoDB
+        };
+        try {
+            const res = await axios.post(`${backendURL}/api/contact/send`, formData);
+            if (res.status === 200) {
+                toast({
+                    title: 'Message Sent!',
+                    description: 'Thank you for your message! I will get back to you soon.',
+                });
+                form.reset();
+            } else {
+                toast({
+                    title: 'Error',
+                    description: 'Failed to send message. Please try again.',
+                    variant: 'destructive'
+                });
+            }
+        } catch (error) {
+            console.error(error);
             toast({
-                title: 'Message Sent!',
-                description: 'Thank you for your message! I will get back to you soon.'
+                title: 'Error',
+                description: error.response?.data?.error || 'Something went wrong.',
+                variant: 'destructive'
             });
+        } finally {
             setIsSubmitting(false);
-        }, 1500)
+        }
     }
     return (
         <section id='contact' className='py-24 px-4 relative bg-secondary-30'>
@@ -96,15 +122,14 @@ const Contact = () => {
                             </div>
                             <button type='submit' disabled={isSubmitting} className={cn(
                                 "cosmic-button w-full flex items-center justify-center gap-2",
-
                             )}>
                                 {isSubmitting
                                     ?
-                                        "Submitting..."
+                                    "Submitting..."
                                     :
-                                        <>
-                                            Send Message <Send size={16} />
-                                        </>
+                                    <>
+                                        Send Message <Send size={16} />
+                                    </>
                                 }
                             </button>
                         </form>
