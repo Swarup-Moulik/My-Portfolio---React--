@@ -16,11 +16,10 @@ connectDB();
 connectCloudinary();
 
 // Middleware
-/*app.use(cors({
+app.use(cors({
   origin: "https://my-portfolio-react-frontend.vercel.app",
   credentials: true
-}));*/
-app.use(cors());
+}));
 app.use(express.json());
 
 // API Endpoints
