@@ -17,7 +17,7 @@ connectCloudinary();
 
 // Middleware
 app.use(cors({
-  origin: "https://my-portfolio-react-8v1k.vercel.app",
+  origin: "https://my-portfolio-react-frontend.vercel.app",
   credentials: true
 }));
 app.use(express.json());
